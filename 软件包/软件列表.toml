@@ -1,0 +1,37 @@
+# 该文件配合AutoGenerate.py使用，来自动生成安装脚本
+# 表头代表软件的类型
+# InstallType 是安装包类型有以下3个 exe zip portable
+# SetupArg 是静默安装参数，PathArg是路径设置参数
+# 具体请看AutoGenerate.py
+
+[SysSup]
+AppList = [
+    { Name = "7-Zip", InstallType = "exe" },
+    { Name = "Honeyview32", InstallType = "exe" },
+    { Name = "PotPlayer", InstallType = "exe" },
+    { Name = "IDM", InstallType = "zip" },
+    { Name = "Everything", InstallType = "exe" },
+]
+
+[TOOL]
+AppList = [
+    { Name = "OBS", InstallType = "exe" },
+    { Name = "Clash", InstallType = "exe" },
+    { Name = "EditPlus", InstallType = "zip" },
+    { Name = "UsbEAm Hosts Editor", InstallType = "zip" },
+]
+
+[RecommendApp]
+AppList = [
+    { Name = "Vscode", InstallType = "exe", SetupArg = 1, PathArg = 1 },
+    { Name = "Imhex", InstallType = "zip" },
+    { Name = "balenaEtcher", InstallType = "portable" },
+    { Name = "Ventoy", InstallType = "zip" },
+    { Name = "rufus", InstallType = "portable" },
+    { Name = "FFmpeg", InstallType = "zip" },
+    { Name = "Lucy", InstallType = "zip" },
+    { Name = "M板编辑器", InstallType = "zip" },
+    { Name = "B站加密解锁器", InstallType = "zip" },
+    { Name = "UltraISO", InstallType = "exe" },
+    { Name = "FurMark", InstallType = "exe", SetupArg = 1, PathArg = 1 },
+]
