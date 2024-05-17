@@ -33,6 +33,7 @@
 ## 文件夹结构配置
 
 在所选盘符下创建下面的文件夹：
+
 `.\CreatDIR.bat`
 
 1. 存放下载的文件
@@ -51,6 +52,7 @@
    </details>
 
 2. 存放输出的文件(发布，视频导出等)
+
    OUT
 
 3. 存放应用程序文件(最好别带空格)
@@ -149,16 +151,19 @@
 ### 常用系统软件
 
 自动部署到"ProgramFiles\SysSup" 默认打开格式需要手动设置
+
 `.\Deploy_SysSup.bat`
 
 ### 常用工具软件
 
 自动部署到"ProgramFiles\TOOL"启动方式需要手动设置
+
 `.\Deploy_TOOL.bat`
 
 ### 个人推荐工具
 
 自动部署到"ProgramFiles\TOOL"启动方式需要手动设置
+
 `.\Deploy_MyTOOL.bat`
 
 ### 常用软件
