@@ -1,2 +1,17 @@
-[7-Zip]
-Link = ""
+7-Zip = "https://7-zip.org/a/7z2301-x64.exe"
+Honeyview32 = "https://www.bandisoft.com/honeyview/dl.php?portable"
+PotPlayer = "https://t1.daumcdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe"
+Everything = "https://www.voidtools.com/Everything-1.4.1.1024.x64-Setup.exe"
+
+
+OBS = "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-30.1.2-Full-Installer-x64.exe"
+Clash = "https://github.com/clashdownload/Clash_for_Windows/releases/download/0.20.39/Clash.for.Windows.Setup.0.20.39.exe"
+"UsbEAm Hosts Editor" = "https://down-load.lanrar.com/file/?BmACPFxtUGEHDldvATRQPFVqAjoCCANyC25XFFNOAW1SclZJADIOKVNxV3JUIAZCAT8CbgIpBGkLfgQiUXtXZQYoAmNcMlAqBytXaAElUHdVaQJuAjEDZAtTVzhTawE9UmVWMwBsDmhTMFc3VDcGPgF9AmECLgQ7CzgEMVE0V2AGNAJiXDNQIgchV3EBaFBjVT8CNQJvAy4LPFdnUyABMFJnVi4AOw5uUzFXYFQ4BjYBPwJiAj8ENgs1BDZRbFdkBmACbFxkUGAHMldnAWVQZ1VtAmMCOQM5C2lXMFM2ATBSN1Y1AHMOIFNsV3FUJgZyASgCYgIvBG8LaAQ/UTlXbgY0AmdcMlA8B3dXdQE8UDxVagJhAmADMAs7V2BTOgE5UmVWNwBoDmpTM1cvVC4GIQE9AmsCKgQ7Cz0ENVE8V2MGPwJiXDVQPAdiVzkBc1AkVX8CcAJgAzALOldkUzsBM1JkVjEAZQ5pUzJXJ1R1Bm4BKwI6AmwENgs/BCxRPFdjBjQCe1wzUDYHYVcvAWRQYg=="
+
+
+Vscode = "https://vscode.download.prss.microsoft.com/dbazure/download/stable/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/VSCodeUserSetup-x64-1.89.1.exe"
+Imhex = "https://github.com/WerWolv/ImHex/releases/download/v1.33.2/imhex-1.33.2-Windows-Portable-x86_64.zip"
+"balenaEtcher" = "https://github.com/balena-io/etcher/releases/download/v1.18.11/balenaEtcher-Portable-1.18.11.exe"
+"Ventoy" = "https://github.com/ventoy/Ventoy/releases/download/v1.0.97/ventoy-1.0.97-windows.zip"
+"rufus" = "https://github.com/pbatard/rufus/releases/download/v4.4/rufus-4.4p.exe"
+"FFmpeg" = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z"

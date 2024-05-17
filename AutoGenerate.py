@@ -27,22 +27,6 @@ ThisPath = dirname(realpath(__file__))
     "APP": "常用软件",
 }
 
-# Exe文件安装代码
-Exe_Code = """
-@REM 搜索第一个exe文件并安装
-FOR %%i IN ("*.exe") DO (
-    SET InstallFile=%%i
-    goto :findsuc
-)
-echo 安装包缺失
-pause
-EXIT
-
-:findsuc
-echo %InstallFile%
-@REM 静默安装
-"%InstallFile%" {1} {2}=%Drive%:\ProgramFiles\%Type%"\{0}"
-"""
 # Portable软件安装代码
 P_Code = """
 @REM 复制当前目录所有文件
@@ -51,10 +35,12 @@ xcopy ".\\" "%Drive%:\ProgramFiles\%Type%\{0}\\" /v /i /s /e /y
 @REM 删除install.bat
 del "%Drive%:\ProgramFiles\%Type%\{0}\install.bat" /f /q
 """
-# 压缩包安装代码
-Zip_Code = """
-FOR %%i IN (*.zip *.rar *.7z) DO (
-    SET ZipFile=%%i
+# 压缩包与exe安装代码
+ZipAndExe_Code = """
+SET 7zaPath="..\\..\\..\\7z2301-extra\\x64\\7za.exe"
+
+FOR %%i IN (*.zip *.rar *.7z *.exe) DO (
+    SET SetupFile=%%i
     goto :findsuc
 )
 echo 安装包缺失
@@ -63,21 +49,34 @@ EXIT
 
 @REM 检测是否有密码并释放文件
 :findsuc
-IF EXIST 123.txt (
-    "..\\..\\..\\7z2301-extra\\x64\\7za.exe" x -o"%Drive%:\ProgramFiles\%Type%\{0}" -p"123" -y "%ZipFile%"
+
+IF /I ".exe" EQU "%~xSetupFile" (
+    echo %InstallFile%
+    @REM 静默安装
+    "%InstallFile%" {1} {2}=%Drive%:\ProgramFiles\%Type%"\{0}"
 ) ELSE (
-    "..\\..\\..\\7z2301-extra\\x64\\7za.exe" x -o"%Drive%:\ProgramFiles\%Type%\{0}" -y "%ZipFile%"
+    IF EXIST 123.txt (
+        %7zaPath% x -o"%Drive%:\ProgramFiles\%Type%\{0}" -p"123" -y "%ZipFile%"
+    ) ELSE (
+        %7zaPath% x -o"%Drive%:\ProgramFiles\%Type%\{0}" -y "%ZipFile%"
+    )
 )
 """
 
 InstallScript_Template = """
 @echo off
 chcp 65001
+cd %~dp0
+@REM 参数1是盘符,参数2是分类文件夹,参数3是下载安装包选项
 
-@REM 参数1是盘符,参数2是分类文件夹
+IF /I "%3" EQU "Y" (
+    echo "下载{0}安装包中"
+    @echo off
+    powershell -Command "$url = '{2}'; $output = '.\\'; $filename = [System.IO.Path]::GetFileName($url); $fullOutputPath = Join-Path -Path $output -ChildPath $filename; $webclient = New-Object System.Net.WebClient; $webclient.DownloadFile($url, $fullOutputPath)"
+    EXIT
+) 
 SET Drive=%1
 SET Type=%2
-cd %~dp0
 echo "正在安装{0}"
 {1}
 
@@ -107,8 +106,10 @@ EXIT
 """
 
 软件列表 = load(f"{ThisPath}/软件包/软件列表.toml")
+下载链接 = load(f"{ThisPath}/软件包/下载链接.toml")
 文档列表 = listdir("离线文档包")
 
+assert type(下载链接) is dict
 
 for Type, Info in 软件列表.items():
     assert type(Type) is str
@@ -119,6 +120,7 @@ for Type, Info in 软件列表.items():
         InstallType: str = AppInfo.get("InstallType", "portable")
         SetupArg: str = 静默安装参数[AppInfo.get("SetupArg", 0)]
         PathArg: str = 路径设置参数[AppInfo.get("PathArg", 0)]
+        PathDownLink: str = 下载链接.get(Name, "foobar")
         PackagePath = f"{ThisPath}/软件包/{分类映射表[Type]}/{Name}"
         try:
             mkdir(f"{PackagePath}")
@@ -126,15 +128,15 @@ for Type, Info in 软件列表.items():
             pass
 
         InstallCode = ""
-        if InstallType == "exe":
-            InstallCode = Exe_Code.format(Name, SetupArg, PathArg)
+        if InstallType == "exe" or InstallType == "zip":
+            InstallCode = ZipAndExe_Code.format(Name, SetupArg, PathArg)
         elif InstallType == "portable":
             InstallCode = P_Code.format(Name)
-        elif InstallType == "zip":
-            InstallCode = Zip_Code.format(Name)
 
         with open(f"{PackagePath}/install.bat", "w", encoding="UTF8") as InstallScript:
-            InstallScript.write(InstallScript_Template.format(Name, InstallCode))
+            InstallScript.write(
+                InstallScript_Template.format(Name, InstallCode, PathDownLink)
+            )
 
 for Name in 文档列表:
     PackagePath = f"{ThisPath}/离线文档包/{Name}"
