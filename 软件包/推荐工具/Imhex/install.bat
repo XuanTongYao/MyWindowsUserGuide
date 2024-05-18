@@ -6,8 +6,7 @@ cd %~dp0
 
 IF /I "%3" EQU "Y" (
     echo "下载Imhex安装包中"
-    @echo off
-    powershell -Command "$url = 'https://github.com/WerWolv/ImHex/releases/download/v1.33.2/imhex-1.33.2-Windows-Portable-x86_64.zip'; $output = '.\'; $filename = [System.IO.Path]::GetFileName($url); $fullOutputPath = Join-Path -Path $output -ChildPath $filename; $webclient = New-Object System.Net.WebClient; $webclient.DownloadFile($url, $fullOutputPath)"
+    powershell -Command "$url = 'https://github.com/WerWolv/ImHex/releases/download/v1.33.2/imhex-1.33.2-Windows-Portable-x86_64.zip';$filename = [System.IO.Path]::GetFileName($url);Invoke-WebRequest -Uri $url -OutFile $filename"
     EXIT
 ) 
 SET Drive=%1

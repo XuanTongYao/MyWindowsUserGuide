@@ -6,8 +6,7 @@ cd %~dp0
 
 IF /I "%3" EQU "Y" (
     echo "下载FFmpeg安装包中"
-    @echo off
-    powershell -Command "$url = 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z'; $output = '.\'; $filename = [System.IO.Path]::GetFileName($url); $fullOutputPath = Join-Path -Path $output -ChildPath $filename; $webclient = New-Object System.Net.WebClient; $webclient.DownloadFile($url, $fullOutputPath)"
+    powershell -Command "$url = 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z';$filename = [System.IO.Path]::GetFileName($url);Invoke-WebRequest -Uri $url -OutFile $filename"
     EXIT
 ) 
 SET Drive=%1

@@ -6,8 +6,7 @@ cd %~dp0
 
 IF /I "%3" EQU "Y" (
     echo "下载UsbEAm Hosts Editor安装包中"
-    @echo off
-    powershell -Command "$url = 'https://down-load.lanrar.com/file/?BmACPFxtUGEHDldvATRQPFVqAjoCCANyC25XFFNOAW1SclZJADIOKVNxV3JUIAZCAT8CbgIpBGkLfgQiUXtXZQYoAmNcMlAqBytXaAElUHdVaQJuAjEDZAtTVzhTawE9UmVWMwBsDmhTMFc3VDcGPgF9AmECLgQ7CzgEMVE0V2AGNAJiXDNQIgchV3EBaFBjVT8CNQJvAy4LPFdnUyABMFJnVi4AOw5uUzFXYFQ4BjYBPwJiAj8ENgs1BDZRbFdkBmACbFxkUGAHMldnAWVQZ1VtAmMCOQM5C2lXMFM2ATBSN1Y1AHMOIFNsV3FUJgZyASgCYgIvBG8LaAQ/UTlXbgY0AmdcMlA8B3dXdQE8UDxVagJhAmADMAs7V2BTOgE5UmVWNwBoDmpTM1cvVC4GIQE9AmsCKgQ7Cz0ENVE8V2MGPwJiXDVQPAdiVzkBc1AkVX8CcAJgAzALOldkUzsBM1JkVjEAZQ5pUzJXJ1R1Bm4BKwI6AmwENgs/BCxRPFdjBjQCe1wzUDYHYVcvAWRQYg=='; $output = '.\'; $filename = [System.IO.Path]::GetFileName($url); $fullOutputPath = Join-Path -Path $output -ChildPath $filename; $webclient = New-Object System.Net.WebClient; $webclient.DownloadFile($url, $fullOutputPath)"
+    powershell -Command "$url = 'https://down-load.lanrar.com/file/?BmACPFxtUGEHDldvATRQPFVqAjoCCANyC25XFFNOAW1SclZJADIOKVNxV3JUIAZCAT8CbgIpBGkLfgQiUXtXZQYoAmNcMlAqBytXaAElUHdVaQJuAjEDZAtTVzhTawE9UmVWMwBsDmhTMFc3VDcGPgF9AmECLgQ7CzgEMVE0V2AGNAJiXDNQIgchV3EBaFBjVT8CNQJvAy4LPFdnUyABMFJnVi4AOw5uUzFXYFQ4BjYBPwJiAj8ENgs1BDZRbFdkBmACbFxkUGAHMldnAWVQZ1VtAmMCOQM5C2lXMFM2ATBSN1Y1AHMOIFNsV3FUJgZyASgCYgIvBG8LaAQ/UTlXbgY0AmdcMlA8B3dXdQE8UDxVagJhAmADMAs7V2BTOgE5UmVWNwBoDmpTM1cvVC4GIQE9AmsCKgQ7Cz0ENVE8V2MGPwJiXDVQPAdiVzkBc1AkVX8CcAJgAzALOldkUzsBM1JkVjEAZQ5pUzJXJ1R1Bm4BKwI6AmwENgs/BCxRPFdjBjQCe1wzUDYHYVcvAWRQYg==';$filename = [System.IO.Path]::GetFileName($url);Invoke-WebRequest -Uri $url -OutFile $filename"
     EXIT
 ) 
 SET Drive=%1

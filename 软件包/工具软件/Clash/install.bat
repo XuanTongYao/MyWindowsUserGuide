@@ -6,8 +6,7 @@ cd %~dp0
 
 IF /I "%3" EQU "Y" (
     echo "下载Clash安装包中"
-    @echo off
-    powershell -Command "$url = 'https://github.com/clashdownload/Clash_for_Windows/releases/download/0.20.39/Clash.for.Windows.Setup.0.20.39.exe'; $output = '.\'; $filename = [System.IO.Path]::GetFileName($url); $fullOutputPath = Join-Path -Path $output -ChildPath $filename; $webclient = New-Object System.Net.WebClient; $webclient.DownloadFile($url, $fullOutputPath)"
+    powershell -Command "$url = 'https://github.com/clashdownload/Clash_for_Windows/releases/download/0.20.39/Clash.for.Windows.Setup.0.20.39.exe';$filename = [System.IO.Path]::GetFileName($url);Invoke-WebRequest -Uri $url -OutFile $filename"
     EXIT
 ) 
 SET Drive=%1
